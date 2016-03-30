@@ -17,11 +17,12 @@ env:
 before_script:
   - git init build/$TRAVIS_REPO_SLUG/build
   - pushd build/$TRAVIS_REPO_SLUG/build
+  - git pull $GH_REPO gh-pages
   - git checkout -b gh-pages
   - popd
 script:
   - node_modules/.bin/metalsmith
 after_success:
-  - cd build/$TRAVIS_REPO_SLUG/build
+  - cd build
   - git add -A
   - git commit -m "[Travis CI] $TRAVIS_COMMIT"
