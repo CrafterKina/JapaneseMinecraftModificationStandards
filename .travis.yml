@@ -15,15 +15,16 @@ env:
   - GIT_AUTHOR_EMAIL=CrafterKina@users.noreply.github.com
   - secure: "wgGLeaKMW+vxgsO17qi2O9NNGFdkLxOl+6DjIjztJXjDPIKFN1KjwT9c4RoEH1zTjlOin4u4beFtlFzzSCRE/GVioWSjeNf4PkgABsRuTSkX//+HbhM8EK1w5Q38wmLPOM9LyP5RX6TRo7gUDhWR4/YYa1NgjkKaDn7RiU2SWr+7eiE8UMAn4oWzqDk92gBFgF2bfnSrEjRdU6/cEJmqqfyHsF+3YAmfx9CKb8d0tmm7DtEY9P9JYaNum65LdGf6uLMaKVlr6mcfeQ6QpKESbnFFibJUSNerzAVHq5QhXP5AvSHy6wfUHjD9I2DcuYyz7+Qpgri3ggu2M49ZGtOeAOGNyqqMIH0FbKypd3kEmD0ADAu52xwpr3I73MGuhKFs8rDNXZTt1vNHrtwTYnY+1ZJVN1l74Co0mgZ7ENYRBj2L4yr0sm5SoWBMswsAQBMOeLzeUcog2rREBEDEATwt6NAjR+Bwe7V5EFN7rlOHq+ezD3OobTA/ZDX5rdYVfrK0uKZZeHwzyScZORD3HjicjZHl90Uamxfb2PCaxGjr2ZTFrAPvjdsOWOZoLCL5kwoq9d8VXaHV4KTLZCDatIhCGFxK7ek6VD4FxM+iz3DavpwkIt0ybV/5Bx43xmX07hjg/kDaRhERtkfZJ9+iByAlBoSXVUcXE8IbSQoZzjzJna4="
 before_script:
-  - git clone -b gh-pages https://github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git build
-  - pushd build
+  - git clone -b gh-pages https://github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git $TRAVIS_REPO_SLUG/build
+  - pushd $TRAVIS_REPO_SLUG/build
   - git checkout gh-pages
   - popd
 script:
   - node_modules/.bin/metalsmith
 after_success:
-  - echo -e "machine github.com\nlogin CrafterKina\npassword $GH_TOKEN" >> $HOME/.netrc
-  - cd build
+  - echo -e "machine github.com\nlogin CrafterKina\npassword $GH_TOKEN" >> $TRAVIS_REPO_SLUG/build/.netrc
+  - cd $TRAVIS_REPO_SLUG/build
   - git add -A 
+  - git checkout gh-pages
   - git commit -m "[Travis CI] $TRAVIS_COMMIT"
   - git push --quiet https://github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git gh-pages
