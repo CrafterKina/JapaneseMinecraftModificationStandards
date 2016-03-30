@@ -15,14 +15,13 @@ env:
   - GIT_AUTHOR_EMAIL=CrafterKina@users.noreply.github.com
   - secure: "iW1tk/U9HmFAr11HzxHzOgrQsgnnU2NZL+jdkzmDX7spou0ofROEAAXtTGDEY0FLCXMk/k15OdtC/jGjjdNzbUpsQpt4ykulQctrQnKcYQqv/sag5YPH1mjfcjigZaMFpKaABGbux0EaaeF12YjPPZh8dE/e6jYISiV8H11ajd9OYs2YJ7vFX5nB3wZx1Wt5IFygTXFnHqVhs2Got4cjzj57kayBrPxiFw2I2jMJYCoyOeM+Bc2iawb6qSV0CeBamWwgKdkLgVTjQ/Y9WzkQeskHswb2Kwr5rbyIyracqHhhoqGx9EVcUkaMZE6CsZhkd+N6opvH0LwWlMpRIQNRznmH78ZpThtUaeZaaCse3Jguzj7BnpNXrkD0o+uq6ZiWQ7rW/Mpy8KcGFS8jemB+YMfav0+o/Y2O5tUFIIYOBSCeP78EZDvfYf1AD7Mzue7/HOJpaCpg7R6SQccpXEUhweZaKSuGJGQbL3O+fLOpyJ4IJunlrWkLf4bkXQYmR+TIYx/hlF5ZoIaM2nYCD48aZudQpBDw7P3zhhxmRa7wiwI/eNQwwVtN4qLTT/DOvdUdAzfMM0QRQkcRLD4ZOWCzJHoD1T9eVqxC34jUxat58eYjQhmk3bBM9TPz7opJpK7/B3jZKNlHhOzLqqFyzrFpqFP4qnPy6UrVnWDfu01t7jg="
 before_script:
-  - git init $TRAVIS_REPO_SLUG/build
-  - pushd $TRAVIS_REPO_SLUG/build
+  - git init build/$TRAVIS_REPO_SLUG/build
+  - pushd build/$TRAVIS_REPO_SLUG/build
   - git checkout -b gh-pages
   - popd
 script:
   - node_modules/.bin/metalsmith
 after_success:
-  - cd $TRAVIS_REPO_SLUG/build
+  - cd build/$TRAVIS_REPO_SLUG/build
   - git add -A
   - git commit -m "[Travis CI] $TRAVIS_COMMIT"
-  - git push -q $GH_REPO gh-pages
