@@ -25,4 +25,4 @@ after_success:
   - cd build
   - git add -A 
   - git commit -m "[Travis CI] $TRAVIS_COMMIT"
-  - git push --quiet https://CrafterKina:$GH_TOKEN@github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git gh-pages
+  - git push --quiet https://$GH_TOKEN@github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git gh-pages
