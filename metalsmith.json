@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "title": "Japanese Minecraft Modification Standards",
+    "description": "The Japanese Standard of Minecraft Modding"
+  },
+  "plugins": {
+    "metalsmith-markdown": {},
+    "metalsmith-htmlescape": true,
+    "metalsmith-permalinks": {
+      "pattern": ":title"
+    },
+    "metalsmith-layouts": {
+      "engine": "handlebars"
+    },
+    "metalsmith-multi-language":{
+      "default": "ja",
+      "locales": ["ja", "en"]
+    },
+    "metalsmith-assets": {
+      "source": "./assets",
+      "destination": "./assets"
+    }
+  }
+}
