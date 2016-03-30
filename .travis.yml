@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+  - "4"
+cache:
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
+env:
+  global:
+  - GIT_COMMITTER_NAME="Travis CI"
+  - GIT_COMMITTER_EMAIL=CrafterKina@users.noreply.github.com
+  - GIT_AUTHOR_NAME="Travis CI"
+  - GIT_AUTHOR_EMAIL=CrafterKina@users.noreply.github.com
+  - secure: "DGKJtZVeXkduYYlRd87F0pewWtauSEGsjHNHnW8NSPTq07K87gvKWNK2AD39yg/2JakbYTJjKYL4fGcfstZdnnBPJdEuiYZTk2LIvMwXUm0GalAwdmUGgFGXipm+fcQ+keaFfDBmPV6JFpt6us8W/nQki2MTkNiGuD/DC3QKxS+CS7IzLKcKTKQO7btD1MqXfE5H7lo5Y5mo4cAyDZS1beRuq/ilGalWTOQjdYZKqiGv5WM2IagWRC61kkEVClmgjsLUG5VxQy88ULh4llxgob7CF7qia8ak00msWHaklFpNvzi0za1NAjkyQg9HrVYoRlgDpQDI5AQrVraRWKMDkeT1KD9SYFsMUpI2ZOAJ++J3NBZPcSY+eFtwimA2Y8XCORGLqSdpvW3w+ExdNbUYunL9mHipRcNpbMCi5FAz+PRsu70UfchhqWy+i6FCse9UOMId6wRtFphDk1qUExQMWIjcNUtzZ8wguqCbNpFoX3tVoFH6o6l7GTI1PPUAYJ9ox9yH4BxtJnjOYLygPNywPMxuAJY75G8icn/fq2CUq7TuNDfLtY/IlHE0jhzTz+hsZZ/kXnUQxqZJx7L1EhO5/xvG8Sv9YI0NqoKMJ3ALNrHdreM34HakNil1qj/QQf0ZYnXF2iORA2pu0u7CBNunN5IKARo4UodGRcwbBoFnxO0="
+before_script:
+  - npm install
+  - git clone -b gh-pages https://github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git build
+  - pushd build
+  - git checkout gh-pages
+  - popd
+script:
+  - node_modules/.bin/metalsmith
+after_success:
+  - cd build
+  - git add -A 
+  - git commit -m "[Travis CI] $TRAVIS_COMMIT"
+  - git push --quiet https://$GH-KEY@github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git gh-pages
