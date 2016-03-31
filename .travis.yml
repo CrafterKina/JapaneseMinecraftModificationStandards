@@ -13,16 +13,12 @@ env:
   - GIT_COMMITTER_EMAIL=CrafterKina@users.noreply.github.com
   - GIT_AUTHOR_NAME="Travis CI"
   - GIT_AUTHOR_EMAIL=CrafterKina@users.noreply.github.com
-  - secure: "iW1tk/U9HmFAr11HzxHzOgrQsgnnU2NZL+jdkzmDX7spou0ofROEAAXtTGDEY0FLCXMk/k15OdtC/jGjjdNzbUpsQpt4ykulQctrQnKcYQqv/sag5YPH1mjfcjigZaMFpKaABGbux0EaaeF12YjPPZh8dE/e6jYISiV8H11ajd9OYs2YJ7vFX5nB3wZx1Wt5IFygTXFnHqVhs2Got4cjzj57kayBrPxiFw2I2jMJYCoyOeM+Bc2iawb6qSV0CeBamWwgKdkLgVTjQ/Y9WzkQeskHswb2Kwr5rbyIyracqHhhoqGx9EVcUkaMZE6CsZhkd+N6opvH0LwWlMpRIQNRznmH78ZpThtUaeZaaCse3Jguzj7BnpNXrkD0o+uq6ZiWQ7rW/Mpy8KcGFS8jemB+YMfav0+o/Y2O5tUFIIYOBSCeP78EZDvfYf1AD7Mzue7/HOJpaCpg7R6SQccpXEUhweZaKSuGJGQbL3O+fLOpyJ4IJunlrWkLf4bkXQYmR+TIYx/hlF5ZoIaM2nYCD48aZudQpBDw7P3zhhxmRa7wiwI/eNQwwVtN4qLTT/DOvdUdAzfMM0QRQkcRLD4ZOWCzJHoD1T9eVqxC34jUxat58eYjQhmk3bBM9TPz7opJpK7/B3jZKNlHhOzLqqFyzrFpqFP4qnPy6UrVnWDfu01t7jg="
-before_script:
-  - git init build/$TRAVIS_REPO_SLUG/build
-  - pushd build/$TRAVIS_REPO_SLUG/build
-  - git pull $GH_REPO gh-pages
-  - git checkout -b gh-pages
-  - popd
+  -  secure: "ngGWfvR/SmaJynfH+0H1NVClnUZ2Jl0C8QHf3rfFcTd+ZfsJKebXSYX4MqisS5tkOvTp/0upsbUVb85tgGalIrf3HUM35+zXh/6BMGdVTnk4O6wqfNm1vpA7wQJ1GuolsiuxbNvFbHPd+Uh7MVtg+kNkaPPWFzmUOabCQ01KAeR4xmBRDwYUdUS9ocCsPkkq8LhG9zLLUSMWvPRL9Vj95nFcxQ9HUEIk2u0yI5FpsN+doFfO1AzU+rof0CugJanGU0AjyOHNvA0Wl8OTU8Xd9IFvjEm75H6gGbadMyeKvcpxcts2x/hDFmUVBC4+teytQegOPKHBhydo3UE9wpIWEiltMiZp7vNVrQFuoSKD1uXpMdlUWY2OJLdB2124uSUqsYyExvXy217dVtBX6smsv+L+IDv3QitNCEckUcPEVy68PESwLo0RCbDQ8O6XQOIS74xqMFfYKeYn0xQF30pQZb3iXyl4gmybYAfFe1g/eNi7GoYtRAkel47CgJszhBs0hN2logUvGKSpvmZhUht0K0Rt4dj1zBhar8dcQJgpHdl9VIkV7cSpnuJLtQcvpGFfBzea+v26kD/l2O2L0sf6l5JdiMyVO3R9E+iafZOpZi1YACZJpRPSx4DR7yGkSe2L4dNciQe8OzcnzlzS6vgL8Pf+um04rRbRqlBU8u5z8Wg="
 script:
   - node_modules/.bin/metalsmith
 after_success:
   - cd build
+  - git init
   - git add -A
   - git commit -m "[Travis CI] $TRAVIS_COMMIT"
+  - git push -q -f "https://${GH_TOKEN}@github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git" master:test > /dev/null 2>&1
