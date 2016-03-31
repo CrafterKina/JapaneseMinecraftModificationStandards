@@ -21,4 +21,4 @@ after_success:
   - git init
   - git add -A
   - git commit -m "[Travis CI] $TRAVIS_COMMIT"
-  - '[ "$TRAVIS_PULL_REQUEST" == "false" ] && git push -q -f "https://${GH_TOKEN}@github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git" master:gh-pages > /dev/null 2>&1
+  - '[ "$TRAVIS_PULL_REQUEST" == "false" ] && git push -q -f "https://${GH_TOKEN}@github.com/MinecraftModderJapan/JapaneseMinecraftModificationStandards.git" master:gh-pages > /dev/null 2>&1'
