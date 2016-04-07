@@ -3,22 +3,40 @@
     "title": "Japanese Minecraft Modification Standards",
     "description": "The Japanese Standard of Minecraft Modding"
   },
-  "plugins": {
-    "metalsmith-markdown": {},
-    "metalsmith-htmlescape": true,
-    "metalsmith-permalinks": {
-      "pattern": ":title"
-    },
-    "metalsmith-layouts": {
-      "engine": "handlebars"
-    },
-    "metalsmith-multi-language":{
-      "default": "ja",
-      "locales": ["ja", "en"]
-    },
-    "metalsmith-assets": {
+  "plugins": [
+    {"metalsmith-collections":{
+        "item": {
+            "pattern":"item/*"
+        }
+    }},
+    {"metalsmith-metallic": true},
+    {"metalsmith-htmlescape": true},
+    {"metalsmith-tags": {
+      "handle": "tags",
+      "metadataKey": "allTags",
+      "path": "tags/:tag.html",
+      "layout": "tag.html",
+      "sortBy": "level",
+      "reverse": false,
+      "skipMetadata": false
+    }},
+    {"metalsmith-assets": {
       "source": "./assets",
       "destination": "./assets"
-    }
-  }
+    }},
+    {"metalsmith-in-place": {
+      "engine": "handlebars",
+      "partials": "layouts/partials"
+    }},
+    {"metalsmith-markdown": {}},
+    {"metalsmith-permalinks": {
+      "pattern": "item/:ID",
+      "relative":false
+    }},
+    {"metalsmith-layouts": {
+      "engine": "handlebars",
+      "partials": "layouts/partials"
+    }},
+    {"metalsmith-html-minifier": "*.html"}
+  ]
 }
