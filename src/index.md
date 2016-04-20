@@ -17,4 +17,4 @@ layout: index.html
 
 ### outdatedタグ
 Minecraftの更新やMinecraftForgeの更新、その他環境の変化により不要となった項目に付加されるタグです。  
-outdatedにされた理由が付記されているため、そちらを参照して適用すべきか考えるべきである。
+outdatedにされた理由が付記されているため、そちらを参照して適用すべきか考えるべきです。
